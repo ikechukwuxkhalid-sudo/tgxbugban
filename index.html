@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEATBUG // X-BAN | CYBER OPS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    
+    <div class="access-gate" id="accessGate">
+        <div class="gate-box">
+            <div class="gate-header">
+                <span class="glitch" data-text="ACCESS RESTRICTED">ACCESS RESTRICTED</span>
+            </div>
+            <div class="gate-body">
+                <p class="terminal-text">> AUTHORIZATION REQUIRED</p>
+                <p class="terminal-text">> CONTACT: <a href="https://t.me/deatbugxban" target="_blank">@deatbugxban</a></p>
+                <p class="terminal-text">> ENTER ACCESS KEY:</p>
+                <input type="password" id="accessKey" placeholder="••••••••" autocomplete="off">
+                <button id="unlockBtn" class="cyber-btn">UNLOCK SYSTEM</button>
+                <p class="error-msg" id="errorMsg"></p>
+            </div>
+            <div class="gate-footer">
+                <span>SECURE CHANNEL // ENCRYPTED</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-app" id="mainApp" style="display: none;">
+        <header class="top-bar">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">DEATBUG<span class="accent">X</span>BAN</span>
+            </div>
+            <div class="status-indicators">
+                <span class="status online"><span class="dot"></span> ONLINE</span>
+                <span class="status">NODES: 47</span>
+                <span class="status">LATENCY: 12ms</span>
+            </div>
+            <div class="user-info">
+                <span id="sessionId">SESSION: null</span>
+            </div>
+        </header>
+
+        <nav class="side-nav">
+            <button class="nav-btn active" data-panel="whatsapp">
+                <span class="nav-icon">◈</span> WA OPS
+            </button>
+            <button class="nav-btn" data-panel="telegram">
+                <span class="nav-icon">◆</span> TG OPS
+            </button>
+            <button class="nav-btn" data-panel="logs">
+                <span class="nav-icon">▣</span> LOGS
+            </button>
+            <button class="nav-btn" data-panel="about">
+                <span class="nav-icon">◎</span> INFO
+            </button>
+        </nav>
+
+        <main class="content">
+            <!-- WhatsApp Panel -->
+            <section class="panel active" id="whatsappPanel">
+                <div class="panel-header">
+                    <h2><span class="glitch-small">WHATSAPP</span> OPERATIONS</h2>
+                    <div class="panel-line"></div>
+                </div>
+                
+                <div class="ops-grid">
+                    <div class="op-card">
+                        <div class="card-header">
+                            <span class="card-title">BAN TARGET</span>
+                            <span class="card-badge red">DESTRUCTIVE</span>
+                        </div>
+                        <div class="card-body">
+                            <label>PHONE NUMBER</label>
+                            <input type="text" id="waBanNumber" placeholder="+1XXXXXXXXXX" class="cyber-input">
+                            <label>REASON CODE</label>
+                            <select id="waBanReason" class="cyber-select">
+                                <option value="spam">SPAM / MASS REPORT</option>
+                                <option value="scam">SCAM ACTIVITY</option>
+                                <option value="abuse">ABUSE REPORTS</option>
+                                <option value="custom">CUSTOM PAYLOAD</option>
+                            </select>
+                            <button class="cyber-btn danger" onclick="executeOp('wa', 'ban')">EXECUTE BAN</button>
+                        </div>
+                    </div>
+
+                    <div class="op-card">
+                        <div class="card-header">
+                            <span class="card-title">UNBAN TARGET</span>
+                            <span class="card-badge green">RESTORE</span>
+                        </div>
+                        <div class="card-body">
+                            <label>PHONE NUMBER</label>
+                            <input type="text" id="waUnbanNumber" placeholder="+1XXXXXXXXXX" class="cyber-input">
+                            <label>METHOD</label>
+                            <select id="waUnbanMethod" class="cyber-select">
+                                <option value="appeal">APPEAL INJECTION</option>
+                                <option value="force">FORCE RESTORE</option>
+                                <option value="shadow">SHADOW CLEAR</option>
+                            </select>
+                            <button class="cyber-btn success" onclick="executeOp('wa', 'unban')">EXECUTE UNBAN</button>
+                        </div>
+                    </div>
+
+                    <div class="op-card">
+                        <div class="card-header">
+                            <span class="card-title">BUG / GLITCH</span>
+                            <span class="card-badge orange">EXPLOIT</span>
+                        </div>
+                        <div class="card-body">
+                            <label>PHONE NUMBER</label>
+                            <input type="text" id="waBugNumber" placeholder="+1XXXXXXXXXX" class="cyber-input">
+                            <label>BUG TYPE</label>
+                            <select id="waBugType" class="cyber-select">
+                                <option value="crash">CRASH LOOP</option>
+                                <option value="freeze">UI FREEZE</option>
+                                <option value="ghost">GHOST MESSAGES</option>
+                                <option value="lag">LAG INJECTION</option>
+                            </select>
+                            <button class="cyber-btn warning" onclick="executeOp('wa', 'bug')">DEPLOY BUG</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Telegram Panel -->
+            <section class="panel" id="telegramPanel">
+                <div class="panel-header">
+                    <h2><span class="glitch-small">TELEGRAM</span> OPERATIONS</h2>
+                    <div class="panel-line"></div>
+                </div>
+                
+                <div class="ops-grid">
+                    <div class="op-card">
+                        <div class="card-header">
+                            <span class="card-title">BAN ACCOUNT</span>
+                            <span class="card-badge red">DESTRUCTIVE</span>
+                        </div>
+                        <div class="card-body">
+                            <label>USERNAME / ID</label>
+                            <input type="text" id="tgBanTarget" placeholder="@username or ID" class="cyber-input">
+                            <label>BAN TYPE</label>
+                            <select id="tgBanType" class="cyber-select">
+                                <option value="temp">TEMPORARY (7D)</option>
+                                <option value="shadow">SHADOW BAN</option>
+                                <option value="hard">HARD BAN</option>
+                                <option value="flood">FLOOD TRIGGER</option>
+                            </select>
+                            <button class="cyber-btn danger" onclick="executeOp('tg', 'ban')">EXECUTE BAN</button>
+                        </div>
+                    </div>
+
+                    <div class="op-card">
+                        <div class="card-header">
+                            <span class="card-title">UNBAN ACCOUNT</span>
+                            <span class="card-badge green">RESTORE</span>
+                        </div>
+                        <div class="card-body">
+                            <label>USERNAME / ID</label>
+                            <input type="text" id="tgUnbanTarget" placeholder="@username or ID" class="cyber-input">
+                            <label>METHOD</label>
+                            <select id="tgUnbanMethod" class="cyber-select">
+                                <option value="appeal">APPEAL BYPASS</option>
+                                <option value="reset">SESSION RESET</option>
+                                <option value="whitelist">FORCE WHITELIST</option>
+                            </select>
+                            <button class="cyber-btn success" onclick="executeOp('tg', 'unban')">EXECUTE UNBAN</button>
+                        </div>
+                    </div>
+
+                    <div class="op-card protected">
+                        <div class="card-header">
+                            <span class="card-title">OWNER PROTECTION</span>
+                            <span class="card-badge cyan">LOCKED</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="protect-note">TARGET: @deatbugxban</p>
+                            <p class="protect-note">STATUS: IMMUNE</p>
+                            <p class="protect-note">OVERRIDE: DENIED</p>
+                            <button class="cyber-btn disabled" disabled>PROTECTED NODE</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logs Panel -->
+            <section class="panel" id="logsPanel">
+                <div class="panel-header">
+                    <h2><span class="glitch-small">SYSTEM</span> LOGS</h2>
+                    <div class="panel-line"></div>
+                </div>
+                <div class="logs-container" id="logsContainer">
+                    <div class="log-entry">
+                        <span class="log-time">[00:00:00]</span>
+                        <span class="log-type sys">SYS</span>
+                        <span class="log-msg">System initialized. Awaiting commands...</span>
+                    </div>
+                </div>
+                <button class="cyber-btn" onclick="clearLogs()">CLEAR LOGS</button>
+            </section>
+
+            <!-- About Panel -->
+            <section class="panel" id="aboutPanel">
+                <div class="panel-header">
+                    <h2><span class="glitch-small">SYSTEM</span> INFO</h2>
+                    <div class="panel-line"></div>
+                </div>
+                <div class="about-content">
+                    <div class="about-block">
+                        <h3>// DEATBUG X-BAN</h3>
+                        <p>Advanced simulation interface for educational and cruise testing purposes.</p>
+                        <p>All operations are simulated. No real accounts are affected.</p>
+                    </div>
+                    <div class="about-block">
+                        <h3>// ACCESS CONTROL</h3>
+                        <p>Authorized access only via <a href="https://t.me/deatbugxban" target="_blank">@deatbugxban</a></p>
+                        <p>Owner node is permanently protected and cannot be targeted.</p>
+                    </div>
+                    <div class="about-block">
+                        <h3>// DISCLAIMER</h3>
+                        <p class="warn-text">THIS IS A FICTIONAL SIMULATION TOOL.</p>
+                        <p>Built for cyberpunk aesthetics and demonstration only.</p>
+                        <p>No actual banning, unbanning, or bugging occurs.</p>
+                    </div>
+                    <div class="about-block">
+                        <h3>// VERSION</h3>
+                        <p>v2.7.4 // CYBERPUNK BUILD</p>
+                        <p>NODE: LOCAL SIMULATION</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="terminal-feed" id="terminalFeed">
+            <div class="term-line">> system ready_</div>
+        </div>
+    </div>
+
+    <div class="modal" id="resultModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <span id="modalTitle">OPERATION RESULT</span>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <pre id="modalOutput"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
